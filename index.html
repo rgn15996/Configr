@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Configr</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a href="#" class="brand">Configr</a>
+        <ul class="nav">
+          <li>{{#linkTo vmguests}}VM Guests{{/linkTo}}</li>
+          <li>{{#linkTo hsns}}Hosted Services{{/linkTo}}</li>
+          <li>{{#linkTo configitems}}Configuration Items{{/linkTo}}</li>
+          <li>{{#linkTo about}}About{{/linkTo}}</li>
+        </ul>
+      </div>
+    </div>
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="vmguests">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class="table">
+            <thead>
+              <tr><th>VMWare Guest Nodes</th></tr>
+            </thead>
+            {{#each model}}
+            <tr><td>
+              {{#linkTo 'vmguest' this}}{{ full_node_name }}{{/linkTo}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+
+  </script>
+  <script type="text/x-handlebars" data-template-name="configitems">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class="table">
+            <thead>
+              <tr><th>Configuration Items</th></tr>
+            </thead>
+            {{#each model}}
+            <tr><td>
+              {{#linkTo 'configitem' this}}{{ full_node_name }}{{/linkTo}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+
+  </script>
+  <script type="text/x-handlebars" data-template-name="hsns">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class="table">
+            <thead>
+              <tr><th>Hosted Service Name</th></tr>
+            </thead>
+            {{#each model}}
+            <tr><td>
+              {{#linkTo 'hsn' this}}{{ name }}{{/linkTo}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <p> Hello, I am an index </p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="vmguest">
+    <span><p> My name is {{controller.full_node_name}}</P</span>
+    <span><p> and I am running {{controller.os_class}} {{controller.os_version}}</P</span>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="configitem">
+    <span><p> My name is {{controller.full_node_name}}</P</span>
+    <span><p> and I am a {{controller.system_type}}</P</span>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="hsn">
+    <span><p> My name is {{controller.name}}</P</span>
+    <span><p> and I am a {{controller.type}}</P</span>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about">
+    <p>This is the content for the about page<p>
+  </script>
+
+  
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
+  <script src="js/libs/ember-1.0.0-rc.6.1.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
